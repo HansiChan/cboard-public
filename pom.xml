@@ -175,7 +175,7 @@
 			</plugin>
 		</plugins>
 
-		<finalName>dynamic-analysis</finalName>
+		<finalName>cboard-public</finalName>
 	</build>
 
 </project>
