@@ -47,7 +47,8 @@ public class CboardPublicDaoImpl {
     }
 
     public List<String> getEventList(String sql) {
-        List<String>list = new LinkedList<>();
+        List<String> list = new LinkedList<>();
+        list.add("全部事件");
         Connection conn = null;
         Statement stat = null;
         ResultSet rs = null;
