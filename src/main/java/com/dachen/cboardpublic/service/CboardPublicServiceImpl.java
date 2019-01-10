@@ -69,6 +69,9 @@ public class CboardPublicServiceImpl {
         if (CollectionUtils.isEmpty(eventList)){
             return eList;
         }
+        EventDTO e = new EventDTO();
+        e.setEvent("全部事件");
+        eList.add(e);
         eventList.forEach(i->{
             EventDTO event = new EventDTO();
             event.setEvent(i);
@@ -84,6 +87,7 @@ public class CboardPublicServiceImpl {
         DimensionMap dMap = cboardPublicDaoImpl.getDimensionMap(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
         String sql2 = "select %s from %s";
+        if("doctor_province".equals(dimension)){sql2 = "select distinct %s from %S";}
         String table = dMap.getDimtb();
         String field = dMap.getField();
         sql2 = String.format(sql2,field,table);
