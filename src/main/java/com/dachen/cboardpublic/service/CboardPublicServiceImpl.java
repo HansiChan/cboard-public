@@ -44,6 +44,7 @@ public class CboardPublicServiceImpl {
     public List<DimensionDTO> getDimensionList(String module){
         Long currentTime = System.currentTimeMillis();
         String sql = "select b.id,a.dimension from bds.bds_module a join bds.bds_dimension b on a.dimension=b.dimension where a.module = '%s'";
+        if(module == null){ sql = "select id,dimension from bds.bds_dimension"; }
         sql = String.format(sql,module);
         List<Index> dimensionList = cboardPublicDaoImpl.getIndexList(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);

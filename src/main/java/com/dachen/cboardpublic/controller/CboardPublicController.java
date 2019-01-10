@@ -28,7 +28,7 @@ public class CboardPublicController {
 
     @ApiOperation(value = "維度下拉接口",notes = "成功返回{\"data\": {},\"resultCode\": 1,\"resultMsg\": xx}",response = DimensionDTO.class)
     @RequestMapping(value = "/dimension",method = {RequestMethod.POST})
-    public JSONMessage dimensionList(@RequestParam String module) {
+    public JSONMessage dimensionList(@RequestParam(required = false) String module) {
         return JSONMessage.success("success",cboardPublicServiceImpl.getDimensionList(module));
     }
 
