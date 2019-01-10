@@ -25,7 +25,7 @@ public class CboardPublicServiceImpl {
 
     public List<IndexDTO> getIndexList(){
         Long currentTime = System.currentTimeMillis();
-        String sql = "select * from dim.dim_index";
+        String sql = "select * from bds.bds_index";
         List<Index> indexList = cboardPublicDaoImpl.getIndexList(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
         List<IndexDTO> mList = new LinkedList<>();
@@ -43,7 +43,7 @@ public class CboardPublicServiceImpl {
 
     public List<DimensionDTO> getDimensionList(String module){
         Long currentTime = System.currentTimeMillis();
-        String sql = "select b.id,a.dimension from dim.dim_module a join dim.dim_dimension b on a.dimension=b.dimension where a.module = '%s'";
+        String sql = "select b.id,a.dimension from bds.bds_module a join bds.bds_dimension b on a.dimension=b.dimension where a.module = '%s'";
         sql = String.format(sql,module);
         List<Index> dimensionList = cboardPublicDaoImpl.getIndexList(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
@@ -62,7 +62,7 @@ public class CboardPublicServiceImpl {
 
     public List<EventDTO> getEventList(){
         Long currentTime = System.currentTimeMillis();
-        String sql = "select distinct module from dw.dw_full_point where module is not null and trim(module)<>'' and module<>'null' ";
+        String sql = "select distinct module from dw.dw_user_event_r where module is not null and trim(module)<>'' and module<>'null' ";
         List<String> eventList = cboardPublicDaoImpl.getEventList(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
         List<EventDTO> eList = new LinkedList<>();
@@ -79,7 +79,7 @@ public class CboardPublicServiceImpl {
 
     public List<String> getDimensionSubList(String dimension){
         Long currentTime = System.currentTimeMillis();
-        String sql = "select dimtb,field from dim.dim_dimension_map where id='%s'";
+        String sql = "select dimtb,field from bds.bds_dimension_map where id='%s'";
         sql = String.format(sql,dimension);
         DimensionMap dMap = cboardPublicDaoImpl.getDimensionMap(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
