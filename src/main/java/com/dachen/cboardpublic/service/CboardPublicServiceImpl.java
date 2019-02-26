@@ -88,7 +88,7 @@ public class CboardPublicServiceImpl {
         DimensionMap dMap = cboardPublicDaoImpl.getDimensionMap(sql);
         logger.info("doTime:{} sql:{}",System.currentTimeMillis()-currentTime,sql);
         String sql2 = "select %s from %s";
-        if("doctor_province".equals(dimension) | "hospital_level".equals(dimension)){sql2 = "select distinct %s from %S";}
+        if("doctor_province".equals(dimension) | "hospital_level".equals(dimension) | "doctor_departments".equals(dimension)){sql2 = "select distinct %s from %S";}
         String table = dMap.getDimtb();
         String field = dMap.getField();
         sql2 = String.format(sql2,field,table);
